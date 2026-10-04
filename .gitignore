@@ -1,0 +1,23 @@
+# Uploaded student resumes
+uploads/resumes/*.pdf
+
+# Keep the resumes folder in the project
+!uploads/resumes/.gitkeep
+
+# XAMPP / local files
+*.log
+*.tmp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# Temporary files
+*.swp
+*.swo
+*~
