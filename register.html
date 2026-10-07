@@ -1,1 +1,75 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Register | Placement Portal</title><link rel="stylesheet" href="css/style.css"></head><body class="auth-page"><a class="auth-brand brand" href="index.html"><span class="brand-mark">P</span> Placement Portal</a><main class="auth-shell single"><section class="auth-card wide"><div class="section-heading left"><span class="eyebrow">Student Registration</span><h2>Create your profile</h2><p>Register once, then complete your academic and professional profile after login.</p></div><form id="registerForm" class="form-grid"><label>Register Number<input name="register_no" required placeholder="e.g. CSE009"></label><label>Full Name<input name="name" required></label><label>Email<input name="email" type="email" required></label><label>Phone<input name="phone" pattern="[0-9]{10}" maxlength="10" required placeholder="10 digit number"></label><label>Password<input name="password" type="password" minlength="8" required></label><label>Confirm Password<input name="confirm_password" type="password" minlength="8" required></label><label>Department<select name="department" required><option value="">Select department</option><option>CSE</option><option>IT</option><option>AIML</option><option>ECE</option><option>EEE</option><option>MECH</option><option>CIVIL</option><option>Other</option></select></label><label>Year<select name="year" required><option value="">Select year</option><option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option><option value="5">5th Year</option></select></label><div class="form-actions full-row"><button class="btn btn-primary" type="submit">Create Account</button><a class="btn btn-outline" href="login.html">Back to Login</a></div><div id="registerMessage" class="form-message full-row"></div></form></section></main><script src="js/script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Placement Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+    <a class="auth-brand brand" href="index.html">
+        <span class="brand-mark">P</span> Placement Portal
+    </a>
+    
+    <main class="auth-shell single">
+        <section class="auth-card wide">
+            <div class="section-heading left">
+                <span class="eyebrow">Student Registration</span>
+                <h2>Create your profile</h2>
+                <p>Register once, then complete your academic and professional profile after login.</p>
+            </div>
+
+            <form id="registerForm" class="form-grid">
+                <label>Register Number
+                    <input name="register_no" required placeholder="e.g. CSE009">
+                </label>
+                <label>Full Name
+                    <input name="name" required>
+                </label>
+                <label>Email
+                    <input name="email" type="email" required>
+                </label>
+                <label>Phone
+                    <input name="phone" pattern="[0-9]{10}" maxlength="10" required placeholder="10 digit number">
+                </label>
+                <label>Password
+                    <input name="password" type="password" minlength="8" required>
+                </label>
+                <label>Confirm Password
+                    <input name="confirm_password" type="password" minlength="8" required>
+                </label>
+                <label>Department
+                    <select name="department" required>
+                        <option value="">Select department</option>
+                        <option>CSE</option>
+                        <option>IT</option>
+                        <option>AIML</option>
+                        <option>ECE</option>
+                        <option>EEE</option>
+                        <option>MECH</option>
+                        <option>CIVIL</option>
+                        <option>Other</option>
+                    </select>
+                </label>
+                <label>Year
+                    <select name="year" required>
+                        <option value="">Select year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                        <option value="5">5th Year</option>
+                    </select>
+                </label>
+                <div class="form-actions full-row">
+                    <button class="btn btn-primary" type="submit">Create Account</button>
+                    <a class="btn btn-outline" href="login.html">Back to Login</a>
+                </div>
+                <div id="registerMessage" class="form-message full-row"></div>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

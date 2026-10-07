@@ -1,9 +1,293 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Student Dashboard | Placement Portal</title><link rel="stylesheet" href="css/style.css"></head><body class="dashboard-page"><div class="mobile-top"><button class="icon-btn" id="mobileMenu">☰</button><a class="brand" href="#"><span class="brand-mark">P</span> Placement Portal</a></div><aside class="sidebar" id="sidebar"><div class="side-brand"><a class="brand" href="index.html"><span class="brand-mark">P</span> Placement Portal</a><small>Student Workspace</small></div><nav class="side-nav"><button class="nav-item active" data-section="dashboard">⌂ <span>Dashboard</span></button><button class="nav-item" data-section="profile">◯ <span>My Profile</span></button><button class="nav-item" data-section="drives">▣ <span>Placement Drives</span></button><button class="nav-item" data-section="applications">▤ <span>My Applications</span></button><button class="nav-item" data-section="interviews">◷ <span>Interviews</span></button><button class="nav-item" data-section="results">✓ <span>Results</span></button><button class="nav-item" data-section="notifications">◉ <span>Notifications</span></button></nav><button class="logout side-logout" data-logout>↪ <span>Logout</span></button></aside><main class="dash-main"><header class="dash-header"><div><span class="eyebrow">Student Portal</span><h1 id="welcomeName">Welcome</h1></div><div class="header-user"><span class="avatar" id="headerAvatar">S</span><span id="headerUserName">Student</span></div></header>
-<section class="dash-section active" id="section-dashboard"><div class="stat-grid"><div class="stat-card"><span>Available Drives</span><strong id="sDrives">0</strong><small>Open opportunities</small></div><div class="stat-card"><span>My Applications</span><strong id="sApplications">0</strong><small>Submitted applications</small></div><div class="stat-card"><span>Shortlisted</span><strong id="sShortlisted">0</strong><small>In selection process</small></div><div class="stat-card"><span>Upcoming Interviews</span><strong id="sInterviews">0</strong><small>Scheduled rounds</small></div><div class="stat-card"><span>Selected</span><strong id="sSelected">0</strong><small>Final selections</small></div></div><div class="two-col"><div class="panel"><div class="panel-head"><div><h2>Recent Placement Drives</h2><p>Latest opportunities available to students.</p></div><button class="text-btn" data-goto="drives">View all</button></div><div id="recentDrives" class="stack-list"></div></div><div class="panel"><div class="panel-head"><div><h2>Recent Notifications</h2><p>Latest placement cell updates.</p></div><button class="text-btn" data-goto="notifications">View all</button></div><div id="recentNotifications" class="stack-list"></div></div></div></section>
-<section class="dash-section" id="section-profile"><div class="section-heading left"><span class="eyebrow">My Profile</span><h2>Student profile</h2><p>Keep your details updated before applying for drives.</p></div><div class="profile-layout"><div class="panel"><form id="profileForm" class="form-grid"><label>Full Name<input id="pName" disabled></label><label>Register Number<input id="pReg" disabled></label><label>Email<input id="pEmail" disabled></label><label>Phone<input id="pPhone" name="phone"></label><label>Date of Birth<input id="pDob" name="dob" type="date"></label><label>Gender<select id="pGender" name="gender"><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option></select></label><label>Department<select id="pDepartment" name="department"><option>CSE</option><option>IT</option><option>AIML</option><option>ECE</option><option>EEE</option><option>MECH</option><option>CIVIL</option><option>Other</option></select></label><label>Year<select id="pYear" name="year"><option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option><option value="5">5th Year</option></select></label><label>CGPA<input id="pCgpa" name="cgpa" type="number" step="0.01" min="0" max="10"></label><label>10th Percentage<input id="p10" name="tenth_percentage" type="number" step="0.01" min="0" max="100"></label><label>12th Percentage<input id="p12" name="twelfth_percentage" type="number" step="0.01" min="0" max="100"></label><label class="full-row">Skills<input id="pSkills" name="skills" placeholder="Java, SQL, HTML, CSS"></label><label class="full-row">Certifications<textarea id="pCertifications" name="certifications" rows="3"></textarea></label><div class="form-actions full-row"><button class="btn btn-primary" type="submit">Save Profile</button><span id="profileMessage" class="form-message"></span></div></form></div><div class="panel profile-side"><div class="completion"><div class="completion-top"><h3>Profile Completion</h3><strong id="profilePercent">0%</strong></div><div class="progress"><span id="profileProgress"></span></div><p>Complete academic and professional details to improve your profile readiness.</p></div><div class="resume-box"><h3>Resume</h3><p id="resumeName">No resume uploaded.</p><form id="resumeForm"><input id="resumeFile" name="resume" type="file" accept="application/pdf,.pdf" required><button class="btn btn-outline full" type="submit">Upload PDF Resume</button><div id="resumeMessage" class="form-message"></div></form><small>PDF only · Maximum 2 MB</small></div></div></div></section>
-<section class="dash-section" id="section-drives"><div class="section-heading left"><span class="eyebrow">Opportunities</span><h2>Placement Drives</h2><p>Review requirements, check eligibility and apply.</p></div><div class="toolbar"><input id="driveSearch" class="search-input" placeholder="Search company or job role..."><select id="driveFilter"><option value="all">All drives</option><option value="eligible">Eligible for me</option><option value="applied">Applied</option></select></div><div id="driveGrid" class="drive-grid"></div></section>
-<section class="dash-section" id="section-applications"><div class="section-heading left"><span class="eyebrow">Application Tracking</span><h2>My Applications</h2><p>Track each application from submission to final result.</p></div><div id="applicationList" class="application-list"></div></section>
-<section class="dash-section" id="section-interviews"><div class="section-heading left"><span class="eyebrow">Schedule</span><h2>Interviews</h2><p>Upcoming interview rounds assigned to you.</p></div><div class="table-wrap"><table><thead><tr><th>Company</th><th>Role</th><th>Round</th><th>Date</th><th>Time</th><th>Mode</th><th>Venue / Link</th></tr></thead><tbody id="interviewBody"></tbody></table></div></section>
-<section class="dash-section" id="section-results"><div class="section-heading left"><span class="eyebrow">Outcome</span><h2>Results</h2><p>Published placement results and remarks.</p></div><div class="table-wrap"><table><thead><tr><th>Company</th><th>Role</th><th>Package</th><th>Final Result</th><th>Remarks</th></tr></thead><tbody id="resultBody"></tbody></table></div></section>
-<section class="dash-section" id="section-notifications"><div class="section-heading left"><span class="eyebrow">Updates</span><h2>Notifications</h2><p>Announcements from the placement cell.</p></div><div id="notificationList" class="notification-list"></div></section>
-</main><div id="toast" class="toast"></div><div class="modal" id="driveModal"><div class="modal-card"><button class="modal-close" data-close-modal>×</button><div id="driveModalContent"></div></div></div><script src="js/script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | Placement Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-page">
+    <div class="mobile-top">
+        <button class="icon-btn" id="mobileMenu">☰</button>
+        <a class="brand" href="#">
+            <span class="brand-mark">P</span> Placement Portal
+        </a>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="side-brand">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">P</span> Placement Portal
+            </a>
+            <small>Student Workspace</small>
+        </div>
+        <nav class="side-nav">
+            <button class="nav-item active" data-section="dashboard">⌂ <span>Dashboard</span></button>
+            <button class="nav-item" data-section="profile">◯ <span>My Profile</span></button>
+            <button class="nav-item" data-section="drives">▣ <span>Placement Drives</span></button>
+            <button class="nav-item" data-section="applications">▤ <span>My Applications</span></button>
+            <button class="nav-item" data-section="interviews">◷ <span>Interviews</span></button>
+            <button class="nav-item" data-section="results">✓ <span>Results</span></button>
+            <button class="nav-item" data-section="notifications">◉ <span>Notifications</span></button>
+        </nav>
+        <button class="logout side-logout" data-logout>↪ <span>Logout</span></button>
+    </aside>
+
+    <main class="dash-main">
+        <header class="dash-header">
+            <div>
+                <span class="eyebrow">Student Portal</span>
+                <h1 id="welcomeName">Welcome</h1>
+            </div>
+            <div class="header-user">
+                <span class="avatar" id="headerAvatar">S</span>
+                <span id="headerUserName">Student</span>
+            </div>
+        </header>
+
+        <section class="dash-section active" id="section-dashboard">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span>Available Drives</span>
+                    <strong id="sDrives">0</strong>
+                    <small>Open opportunities</small>
+                </div>
+                <div class="stat-card">
+                    <span>My Applications</span>
+                    <strong id="sApplications">0</strong>
+                    <small>Submitted applications</small>
+                </div>
+                <div class="stat-card">
+                    <span>Shortlisted</span>
+                    <strong id="sShortlisted">0</strong>
+                    <small>In selection process</small>
+                </div>
+                <div class="stat-card">
+                    <span>Upcoming Interviews</span>
+                    <strong id="sInterviews">0</strong>
+                    <small>Scheduled rounds</small>
+                </div>
+                <div class="stat-card">
+                    <span>Selected</span>
+                    <strong id="sSelected">0</strong>
+                    <small>Final selections</small>
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Recent Placement Drives</h2>
+                            <p>Latest opportunities available to students.</p>
+                        </div>
+                        <button class="text-btn" data-goto="drives">View all</button>
+                    </div>
+                    <div id="recentDrives" class="stack-list"></div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Recent Notifications</h2>
+                            <p>Latest placement cell updates.</p>
+                        </div>
+                        <button class="text-btn" data-goto="notifications">View all</button>
+                    </div>
+                    <div id="recentNotifications" class="stack-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dash-section" id="section-profile">
+            <div class="section-heading left">
+                <span class="eyebrow">My Profile</span>
+                <h2>Student profile</h2>
+                <p>Keep your details updated before applying for drives.</p>
+            </div>
+            <div class="profile-layout">
+                <div class="panel">
+                    <form id="profileForm" class="form-grid">
+                        <label>Full Name
+                            <input id="pName" disabled>
+                        </label>
+                        <label>Register Number
+                            <input id="pReg" disabled>
+                        </label>
+                        <label>Email
+                            <input id="pEmail" disabled>
+                        </label>
+                        <label>Phone
+                            <input id="pPhone" name="phone">
+                        </label>
+                        <label>Date of Birth
+                            <input id="pDob" name="dob" type="date">
+                        </label>
+                        <label>Gender
+                            <select id="pGender" name="gender">
+                                <option value="">Select</option>
+                                <option>Female</option>
+                                <option>Male</option>
+                                <option>Other</option>
+                            </select>
+                        </label>
+                        <label>Department
+                            <select id="pDepartment" name="department">
+                                <option>CSE</option>
+                                <option>IT</option>
+                                <option>AIML</option>
+                                <option>ECE</option>
+                                <option>EEE</option>
+                                <option>MECH</option>
+                                <option>CIVIL</option>
+                                <option>Other</option>
+                            </select>
+                        </label>
+                        <label>Year
+                            <select id="pYear" name="year">
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
+                                <option value="4">4th Year</option>
+                                <option value="5">5th Year</option>
+                            </select>
+                        </label>
+                        <label>CGPA
+                            <input id="pCgpa" name="cgpa" type="number" step="0.01" min="0" max="10">
+                        </label>
+                        <label>10th Percentage
+                            <input id="p10" name="tenth_percentage" type="number" step="0.01" min="0" max="100">
+                        </label>
+                        <label>12th Percentage
+                            <input id="p12" name="twelfth_percentage" type="number" step="0.01" min="0" max="100">
+                        </label>
+                        <label class="full-row">Skills
+                            <input id="pSkills" name="skills" placeholder="Java, SQL, HTML, CSS">
+                        </label>
+                        <label class="full-row">Certifications
+                            <textarea id="pCertifications" name="certifications" rows="3"></textarea>
+                        </label>
+                        <div class="form-actions full-row">
+                            <button class="btn btn-primary" type="submit">Save Profile</button>
+                            <span id="profileMessage" class="form-message"></span>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="panel profile-side">
+                    <div class="completion">
+                        <div class="completion-top">
+                            <h3>Profile Completion</h3>
+                            <strong id="profilePercent">0%</strong>
+                        </div>
+                        <div class="progress">
+                            <span id="profileProgress"></span>
+                        </div>
+                        <p>Complete academic and professional details to improve your profile readiness.</p>
+                    </div>
+                    <div class="resume-box">
+                        <h3>Resume</h3>
+                        <p id="resumeName">No resume uploaded.</p>
+                        <form id="resumeForm">
+                            <input id="resumeFile" name="resume" type="file" accept="application/pdf,.pdf" required>
+                            <button class="btn btn-outline full" type="submit">Upload PDF Resume</button>
+                            <div id="resumeMessage" class="form-message"></div>
+                        </form>
+                        <small>PDF only · Maximum 2 MB</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dash-section" id="section-drives">
+            <div class="section-heading left">
+                <span class="eyebrow">Opportunities</span>
+                <h2>Placement Drives</h2>
+                <p>Review requirements, check eligibility and apply.</p>
+            </div>
+            <div class="toolbar">
+                <input id="driveSearch" class="search-input" placeholder="Search company or job role...">
+                <select id="driveFilter">
+                    <option value="all">All drives</option>
+                    <option value="eligible">Eligible for me</option>
+                    <option value="applied">Applied</option>
+                </select>
+            </div>
+            <div id="driveGrid" class="drive-grid"></div>
+        </section>
+
+        <section class="dash-section" id="section-applications">
+            <div class="section-heading left">
+                <span class="eyebrow">Application Tracking</span>
+                <h2>My Applications</h2>
+                <p>Track each application from submission to final result.</p>
+            </div>
+            <div id="applicationList" class="application-list"></div>
+        </section>
+
+        <section class="dash-section" id="section-interviews">
+            <div class="section-heading left">
+                <span class="eyebrow">Schedule</span>
+                <h2>Interviews</h2>
+                <p>Upcoming interview rounds assigned to you.</p>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Role</th>
+                            <th>Round</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Mode</th>
+                            <th>Venue / Link</th>
+                        </tr>
+                    </thead>
+                    <tbody id="interviewBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="dash-section" id="section-results">
+            <div class="section-heading left">
+                <span class="eyebrow">Outcome</span>
+                <h2>Results</h2>
+                <p>Published placement results and remarks.</p>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Role</th>
+                            <th>Package</th>
+                            <th>Final Result</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="dash-section" id="section-notifications">
+            <div class="section-heading left">
+                <span class="eyebrow">Updates</span>
+                <h2>Notifications</h2>
+                <p>Announcements from the placement cell.</p>
+            </div>
+            <div id="notificationList" class="notification-list"></div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast"></div>
+    <div class="modal" id="driveModal">
+        <div class="modal-card">
+            <button class="modal-close" data-close-modal>×</button>
+            <div id="driveModalContent"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
